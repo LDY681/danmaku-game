@@ -497,7 +497,7 @@ function forceStopMusic() {
 function onMessage(msg) {
     let jso = JSON.parse(msg);
     let cmd = jso["cmd"];
-
+    console.log(`${cmd}: `, jso)
     if (cmd == "DANMU_MSG") {
         // danmaku
         let info = jso["info"];
@@ -520,6 +520,9 @@ function onMessage(msg) {
         // room update
         let f = jso["data"]["fans"];
         onFansUpdate(f);
+    } else if (cmd == "WELCOME") {
+        let user = jso["data"]["uname"];
+        onEnterRoom(user)
     }
 }
 
@@ -562,7 +565,7 @@ let enableMusic = true;
 /**
  * @type {BilibiliSocket}
  */
-let bs = new BilibiliSocket(4449590);
+let bs = new BilibiliSocket(13991);
 bs.onMessage = msg => onMessage(msg);
 bs.connect();
 

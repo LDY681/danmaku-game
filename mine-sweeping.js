@@ -548,6 +548,10 @@ function onFansUpdate(fans) {
     }
 }
 
+function onEnterRoom(user) {
+    danmaku.add("#ffff00", `欢迎${user}进入直播间`);
+}
+
 function getLineColumn(i) {
     return [Math.floor(i / 30), i % 30];
 }
